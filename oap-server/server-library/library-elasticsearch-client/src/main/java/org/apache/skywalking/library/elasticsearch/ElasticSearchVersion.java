@@ -42,13 +42,13 @@ public final class ElasticSearchVersion {
         this.major = major;
         this.minor = minor;
 
-        if (distribution.equalsIgnoreCase("OpenSearch")) {
+        if ("OpenSearch".equalsIgnoreCase(distribution)) {
             requestFactory = new V81RequestFactory(this);
             codec = V78Codec.INSTANCE;
             return;
         }
 
-        if (distribution.equalsIgnoreCase("ElasticSearch")) {
+        if ("ElasticSearch".equalsIgnoreCase(distribution)) {
             if (major == 6) { // 6.x
                 requestFactory = new V6RequestFactory(this);
                 codec = V6Codec.INSTANCE;

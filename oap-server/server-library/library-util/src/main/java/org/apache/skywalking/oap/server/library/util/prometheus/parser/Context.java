@@ -173,11 +173,11 @@ public class Context {
 
     private static double convertStringToDouble(String valueString) {
         double doubleValue;
-        if (valueString.equalsIgnoreCase("NaN")) {
+        if ("NaN".equalsIgnoreCase(valueString)) {
             doubleValue = Double.NaN;
-        } else if (valueString.equalsIgnoreCase("+Inf")) {
+        } else if ("+Inf".equalsIgnoreCase(valueString)) {
             doubleValue = Double.POSITIVE_INFINITY;
-        } else if (valueString.equalsIgnoreCase("-Inf")) {
+        } else if ("-Inf".equalsIgnoreCase(valueString)) {
             doubleValue = Double.NEGATIVE_INFINITY;
         } else {
             doubleValue = Double.parseDouble(valueString);
