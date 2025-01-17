@@ -18,6 +18,7 @@
 
 package org.apache.skywalking.oap.server.library.util.prometheus.parser;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,7 +49,7 @@ public class TextParser implements Parser {
             line = lastLineReadFromStream;
             lastLineReadFromStream = null;
         } else {
-            line = reader.readLine();
+            line = BoundedLineReader.readLine(reader, 5_000_000);
         }
         if (line == null) {
             return null;
@@ -66,7 +67,7 @@ public class TextParser implements Parser {
                 LOG.debug("Failed to process line - it will be ignored: {}", line, e);
             }
 
-            line = reader.readLine();
+            line = BoundedLineReader.readLine(reader, 5_000_000);
         }
 
         if (!ctx.name.isEmpty()) {
